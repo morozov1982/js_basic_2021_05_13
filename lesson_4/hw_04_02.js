@@ -7,20 +7,11 @@
 */
 
 let basket = {
-	goods : {
-		good1 : {
-			price : 300,
-			quantity : 1
-		},
-		good2 : {
-			price : 600,
-			quantity : 2
-		},
-		good3 : {
-			price : 400,
-			quantity : 5
-		}
-	},
+	goods : [
+		{title: 'good1', price : 300, quantity : 1},
+		{title: 'good2', price : 600, quantity : 2},
+		{title: 'good3', price : 400, quantity : 5}
+	],
 	getTotalSum() {
 		let totalSum = 0;
 		for (let good in this.goods) {
