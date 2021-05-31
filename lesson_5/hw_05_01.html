@@ -1,0 +1,92 @@
+<!--
+	1. Создать функцию, генерирующую шахматную доску.
+	Можно использовать любые html-теги.
+	Доска должна быть верно разлинована на черные и белые ячейки.
+	Строки должны нумероваться числами от 1 до 8,
+	столбцы — латинскими буквами A, B, C, D, E, F, G, H.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ChessBoard</title>
+	<style>
+		.board {
+			display: flex;
+			width: 850px;
+			margin: 0 auto;
+			flex-wrap: wrap;
+			background-color: grey;
+			font-family: Arial, Helvetica, sans-serif;
+			color: white;
+		}
+		.row {
+			display: flex;
+			width: 100%;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+		}
+		.cell {
+			width: 100px;
+			height: 100px;
+		}
+		.letter_cell {
+			width: 100px;
+		}
+		.number_cell {
+			margin: 0 auto;
+		}
+		.white__bg {
+			background-color: white;
+		}
+		.black__bg {
+			background-color: black;
+		}
+	</style>
+</head>
+<body>
+
+	<script>
+		const rows = 10;
+		const letArr = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', ''];
+		const cellColors = ['white__bg', 'black__bg'];
+
+		const board = document.createElement('div');
+		board.classList.add('board');
+		document.body.appendChild(board);
+
+		for(let i = rows - 1; i >= 0; i--) {
+			let cellColor = i % 2;
+			const row = document.createElement('div');
+			row.classList.add('row');
+			
+			for(let j of letArr) {
+				const cell = document.createElement('div');
+				if(i === 0 || i === rows - 1) {
+					if(j) {
+						cell.classList.add('letter_cell');
+						cell.textContent = j;
+					}
+				}
+				else {
+					if(!j) {
+						cell.classList.add('number_cell');
+						cell.textContent = i;
+					}
+					else {
+						cell.classList.add(cellColors[Number(cellColor)]);
+						cell.classList.add('cell');
+					}
+				}
+				row.appendChild(cell);
+				cellColor = !cellColor;
+			}
+			board.appendChild(row);
+		}
+	</script>
+	
+</body>
+</html>
